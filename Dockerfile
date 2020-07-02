@@ -1,14 +1,5 @@
-FROM openjdk:11.0-jre-stretch
-
-WORKDIR /usr/share/demo-k8s
-
-ARG appDir=/usr/share/demo-k8s
-ARG DEPENDENCY=target/dependency
-
-COPY ${DEPENDENCY}/BOOT-INF/lib ${appDir}/lib
-COPY ${DEPENDENCY}/META-INF ${appDir}/META-INF
-COPY ${DEPENDENCY}/BOOT-INF/classes ${appDir}
-
-EXPOSE 8081 5005
-
-ENTRYPOINT ["java","-cp","com/kubernetes/demo/*:lib/*:.","com.kubernetes.demo.K8SDemoApplication"]
+FROM openjdk:8
+EXPOSE 8080
+ADD webapp/target/*.war jenpipeline.war
+ENTRYPOINT ["java","-jar","/jenpipeline.war"]
+CMD while true; do echo 'Hit CTRL+C'; sleep 1; done
