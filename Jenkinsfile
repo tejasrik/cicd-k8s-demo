@@ -17,10 +17,10 @@ node{
     
    
     stage('publish docker'){
-       sh  'docker build -t tejasrik/jenkinspipeline .'
+       sh  'docker build -t tejasrik/pipeline .'
        sh 'docker login -u tejasrik -p Tejasri@6523'
-       sh'docker push tejasrik/jenkinspipeline'
-       sh'docker run -d tejasrik/jenkinspipeline'
+       sh'docker push tejasrik/pipeline'
+       sh'docker run -d tejasrik/pipeline'
     }
     stage('deploy application in k8s cluster'){
         
